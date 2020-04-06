@@ -74,6 +74,7 @@ console.log("renderstats");
 	buttonDetail.appendChild( checkbox_med );
 	buttonDetail.appendChild( checkbox_high );
 	msDiv.appendChild( buttonDetail );
+	msDiv.appendChild(document.createElement('br'));
 
 	var buttonAxis = document.createElement( 'a' );
 	buttonAxis.style.cssText = 'color:#000;background-color:#999;margin: 0 0 0 5px;padding:2px 15px 2px 10px;border-radius: 20px;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;cursor:default';
