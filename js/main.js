@@ -329,7 +329,7 @@ buttonAbout.addEventListener( 'click', function ( event ) {
   dom.style.padding = '5px';
   dom.style.border = '0px';
   dom.style.textAlign = 'centerleft';
-  dom.innerHTML = '<h1>BrowserSynth Editor v 0.9 <\/h1>Very much based on this <a href="https://github.com/after12am/eisenscript-editor" target="_blank">source code</a><br>I have added more geometries, use the newer three.js library version 115 and changed a couple of things.<br>Powered by <a href="http://codemirror.net/" target="_blank">CodeMirror ' + CodeMirror.version + '</a><br><br>There are some example scripts provided<br>So far syntax errors only appear in the javascript console<br>The share button encodes the current script into a link which can be send/posted and the script is in it.<br><br>For any questions and/or problems head over to github and raise an issue.</a>';
+  dom.innerHTML = '<h1>BrowserSynth Editor v 0.9 <\/h1>Very much based on this <a href="https://github.com/after12am/eisenscript-editor" target="_blank">source code</a><br>I have added more geometries, use the newer three.js library version 115 and changed a couple of things.<br>Powered by <a href="http://codemirror.net/" target="_blank">CodeMirror ' + CodeMirror.version + '</a><br><br>There are some example scripts provided<br>So far syntax errors only appear in the developer tools console of your browser <br>The share button encodes the current script into a link which can be send/posted and the script is in it.<br><br>For any questions and/or problems head over to <a href="https://github.com/kronpano/BrowserSynth" target="_blank">GitHub</a> and raise an issue.</a> More example scripts and renders will be pulished in the Wiki section on GitHub';
   popup.set( dom );
   popup.show();
 
