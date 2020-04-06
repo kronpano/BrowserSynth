@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>renderer</title>
+<style type="text/css">
+body {
+  font-family: Monospace;
+  background-color: #202020;
+  margin: 0px;
+  overflow: hidden;
+}
+</style>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<script type="text/eisenscript" id="eisenscript" src="">
+%s
+
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="scripts/three.min.115.js"></script>
+<script src="scripts/THREEx.WindowResize.js"></script>
+<script src="scripts/OrbitControls.js"></script>
+<script src="scripts/csg.js"></script>
+<script src="scripts/ThreeCSG.js"></script>
+<script src="scripts/BendModifier.js"></script>
+<script src="scripts/stats.min.js"></script>
+<script src="scripts/threex.rendererstats.js"></script>
+<script src="scripts/vendor/color.js"></script>
+<script src="scripts/vendor/mt.js"></script>
+<script src="scripts/FileSaver.min.js"></script>
+<script src="scripts/OBJExporter.js"></script>
+<script src="scripts/GLTFExporter.js"></script>
+<script src="scripts/eisenscript.js"></script>
+
+
+<script type="text/javascript">
+var container, renderer, objects, n = 0, p = 0, remnum = 0, rot_on_off, axis_on_off, grid_on_off;
+
+if(localStorage.getItem('showAxis')) {
+  axis_on_off = JSON.parse(localStorage.getItem('showAxis')) ;
+}
+if(localStorage.getItem('doRotate')) {
+    rot_on_off = JSON.parse(localStorage.getItem('doRotate'));
+}  
+
+function animate() {
+  requestAnimationFrame( animate );
+
+  renderer.axisHelper(axis_on_off);
+  renderer.controls.autoRotate = rot_on_off;
+  renderer.controls.update();
+  renderer.render();
+}
+
+
+$(function() {
+
+  // compiling...
+  var s = +new Date();
+  var compiler = new EISEN.Compiler();
+  var objectcode;
+  try {
+    objectCode = compiler.compile($('#eisenscript').text());
+    console.log(objectCode);
+  } catch (e) {
+    console.error(e.message);
+    return;
+  }
+
+  console.log('compile time:', (+new Date() - s) + 'ms');
+
+  // rendering...
+  var s = +new Date();
+  // create the renderer
+  renderer = new EISEN.TestRenderer(window.innerWidth, window.innerHeight);
+
+  //generate a skybox
+  // the skybox adds a lot of faces and vertices!!!
+  renderer.addSkybox({top:0x7ec0ee,bottom:0xd6c57f,split:1.5});
+
+  if(localStorage.getItem('showGrid')) {
+    grid_on_off = JSON.parse(localStorage.getItem('showGrid'));
+    if(grid_on_off){
+      renderer.gridHelper({on:true,size:40,step:40});
+    }else{
+      renderer.gridHelper({on:false});
+    }
+  } 
+  renderer.controls.autoRotateSpeed = 3;
+
+  //stats display
+  renderer.render_stats(true);
+  renderer.fps_stats(0); //0: fps, 1: ms, 2: mb, 3+: custom
+
+  objectCode.objects.forEach(function(object) {
+    switch (object.type) {
+      case 'background': renderer.clearColor(object.color); break;
+      case 'primitive': renderer.addPrimitive(object); break;
+    }
+  });
+  
+  console.log('render time:', (+new Date() - s) + 'ms');
+
+  // appending to body...
+  container = document.createElement('div');
+  document.body.appendChild(container);
+  container.appendChild(renderer.domElement);
+
+  // animating...
+  animate();
+});
+
+</script>
+<div id="clickbar"></div>
+</body>
+</html>

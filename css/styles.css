@@ -1,0 +1,151 @@
+html, body {
+
+  height: 100%;
+
+}
+
+body {
+
+  margin: 0px;
+  overflow: hidden;
+
+  font-family: Arial;
+
+}
+
+a {
+
+  /*color: #ffffff;*/
+
+}
+
+h1 {
+
+  font-size: 20px;
+  margin-top: 0px;
+
+}
+
+.button {
+
+  font-size: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: rgb(80,80,80);
+  border: transparent;
+  background-color: rgb(235,235,235);
+
+  margin: 2px;
+  padding: 8px 10px;
+
+  cursor: pointer;
+
+}
+
+.button:hover {
+
+  color: rgb(235,235,235);
+  background-color: rgb(80,80,80);
+
+}
+
+.button path {
+
+  stroke: rgb(80,80,80);
+
+}
+
+.button:hover path {
+
+  stroke: rgb(235,235,235);
+
+}
+
+#preview {
+
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+
+}
+
+#editor {
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+}
+
+#editor .CodeMirror {
+
+  height: 100%;
+  font-size: 14px;
+  color: #000;
+  background-color: rgba(155,155,155,0.65);
+
+}
+
+#editor .CodeMirror-scroll {
+
+  height: 100%;
+
+}
+
+#editor .CodeMirror div.CodeMirror-selected {
+
+  background: rgba(0,0,0,0.2);
+
+}
+
+#editor .CodeMirror-focused div.CodeMirror-selected {
+
+  background: rgba(0,0,255,0.2);
+
+}
+
+#editor .CodeMirror .errorLine {
+
+  background: rgba(255,0,0,0.25);
+
+}
+
+#editor .CodeMirror .esprima-error {
+
+  color: #f00;
+  text-align: right;
+  padding: 0px 20px;
+
+}
+
+#toolbar {
+
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  text-align: right;
+  z-index: 10; /* CodeMirror sets z-index */
+
+}
+
+#clickbar {
+
+  position: absolute;
+  top: 140px;
+  right: 10px;
+  text-align: right;
+  z-index: 10; /* CodeMirror sets z-index */
+
+}
+
+#popup {
+  position: absolute;
+  color: rgb(235,235,235);
+  padding: 10px 10px 10px 10px;
+  background-color: rgba(120,120,120, 0.9);
+  z-index: 20; /* CodeMirror sets z-index */
+
+}

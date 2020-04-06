@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+</script>
+<script src="js/lib/rawinflate.js"></script>
+<script src="js/lib/rawdeflate.js"></script>
+<h3>Paste renderer.html into the textfield and it will be encoded for main.js</h3>
+
+The "deflated" string is written to the Output text area and the console of the developer tools.<br>
+Copy it from there to the "container" decode bracket at the top of main.js<br>
+Make sure the field with the id eisenscript at the top of render.html contains only a %s
+
+<br><br>
+Renderer.html:<br>
+<textarea id="myTextarea" rows="20" cols="80">
+</textarea>
+
+<br>Click the encode button to get the encoded code in the log console.
+
+<button type="button" onclick="EncodeFunction()">Encode</button>
+<br>
+<br>
+<br>
+To "recover" a script or the render.html file you can paste the deflated string in the textfiled and press decode<br>
+This will output the "original" in the output area and the console <br>
+
+<button type="button" onclick="DecodeFunction()">Decode</button>
+
+<br><br>
+Output:<br>
+<textarea id="OutputArea" rows="20" cols="80">
+</textarea>
+
+<script type="text/javascript">
+function EncodeFunction() {
+    var x = document.getElementById("myTextarea").value;
+    console.log(encode(x));
+    document.getElementById("OutputArea").innerHTML = encode(x);
+}
+
+function DecodeFunction() {
+    var x = document.getElementById("myTextarea").value;
+    console.log(decode(x));
+    document.getElementById("OutputArea").innerHTML = decode(x);
+}
+
+function decode( string ) {
+  return RawDeflate.inflate( window.atob( string ) );
+}
+
+function encode( string ) {
+  return window.btoa( RawDeflate.deflate( string ) );
+}
+
+
+</script>
+</body>
+</html>
